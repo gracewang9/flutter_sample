@@ -97,8 +97,26 @@ abstract class AppLocalizations {
   /// The conventional newborn programmer greeting
   ///
   /// In en, this message translates to:
-  /// **'Hello World!'**
-  String get helloWorld;
+  /// **'Hello {userName}!'**
+  String hello(String userName);
+
+  /// App Title
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get title;
+
+  /// A plural message
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{no wombats} =1{1 wombat} other{{count} wombats}}'**
+  String nWombats(num count);
+
+  /// A gendered message
+  ///
+  /// In en, this message translates to:
+  /// **'{gender, select, male{he} female{she} other{they}}'**
+  String pronoun(String gender);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

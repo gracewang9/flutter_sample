@@ -7,3 +7,5 @@ output-class: AppLocalizations
 preferred-supported-locales:
   - en
 use-deferred-loading: true
+#忽略大小写
+use-escaping: true
