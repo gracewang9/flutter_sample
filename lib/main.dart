@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_sample/l10n/app_localizations.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  runApp(const SampleApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class SampleApp extends StatelessWidget {
+  const SampleApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      localizationsDelegates: const [
+        // AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+      ],
+      supportedLocales: [Locale('en'), Locale('zh')],
       theme: ThemeData(
         // This is the theme of your application.
         //
