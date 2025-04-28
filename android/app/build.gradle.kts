@@ -1,3 +1,5 @@
+import com.android.builder.utils.isValidZipEntryName
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -31,10 +33,21 @@ android {
     }
 
     buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+
+        getByName("release") {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            setProguardFiles(
+                listOf(
+                    getDefaultProguardFile("proguard-android.txt"),
+                    "proguard-rules.pro"
+                )
+            )
+//            signingConfig signingConfigs . release
+        }
+        getByName("debug") {
+            isDebuggable = true
+
         }
     }
 }
