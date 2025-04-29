@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sample/data/models/home_entity.dart';
-import 'package:flutter_sample/page/home/home_controller.dart';
-import 'package:flutter_sample/routes/app_routes.dart';
 import 'package:get/get.dart';
 
-import '../details/details_view.dart';
+import '../../data/models/home_entity.dart';
+import '../../routes/app_routes.dart';
+import 'logic.dart';
+import 'state.dart';
 
-class HomeWidget extends GetView<HomeController> {
+
+class HomeWidget extends GetView<HomeLogic> {
   const HomeWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return controller.obx(
-      (data) => ListView.separated(
+          (data) => ListView.separated(
         itemBuilder: (context, index) {
           return _ListItemWidget(datas: data!.data!.datas![index]);
         },
@@ -109,3 +110,4 @@ class _ListItemWidget extends StatelessWidget {
     );
   }
 }
+

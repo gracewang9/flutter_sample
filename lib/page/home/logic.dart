@@ -1,9 +1,12 @@
-import 'package:flutter_sample/data/models/home_entity.dart';
-import 'package:flutter_sample/core/network/api_service.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController with StateMixin<HomeEntity> {
+
+import 'package:flutter_sample/data/models/home_entity.dart';
+import 'package:flutter_sample/core/network/api_service.dart';
+
+class HomeLogic extends GetxController with StateMixin<HomeEntity> {
   ApiService provider = Get.find<ApiService>();
+
 
   void getArticleList() async {
     ///显示加载中

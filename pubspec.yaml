@@ -40,6 +40,7 @@ dependencies:
   get: ^4.7.2
   webview_flutter: ^4.11.0
   shared_preferences: ^2.5.3
+  dio: ^5.8.0+1
 
 
 dev_dependencies:
@@ -65,7 +66,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/androidIcon.png
+    - images/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

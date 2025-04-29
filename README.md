@@ -98,6 +98,9 @@ AppLocalizations.of(context)!.helloWorld
 - 进入下一个页面并取消之前的所有路由 Get.offAll(NextScreen());
 - 导航到下一条路由，并在返回后立即接收或更新数据 var data=await Get.to(Payment);
 - 在另一个页面上，发送前一个路由的数据 Get.back(result:'success');
+- 跳转重复页面 ：Get.toNamed('xxx',  preventDuplicates: false); or Get.to('xxx',preventDuplicates:false);
+
+
 - 二、状态管理：
 - 响应式变量声明
 - 1、使用Rx{xx} :
@@ -113,6 +116,13 @@ AppLocalizations.of(context)!.helloWorld
   final list=<String>[].obs;
   final map=<String,String>{}.obs;
 - 自定义：final user=User().obs;
+
+  注意：如果用.obs监听状态那么在View中使用Obx(()=>Widget)获取，update()更新在View中使用GetBuilder<Logic>(builder:(logic)=>Widget);
+    - Obx是配合Rx响应式变量使用、GetBuilder是配合update使用：请注意，这完全是俩套定点刷新控件的方案
+    区别：前者响应式变量变化，Obx自动刷新；后者需要使用update手动调用刷新
+    GetBuilder内部实际上是对StatefulWidget的封装，所以占用资源极小
+
+
 - 三、依赖管理
 - Controller controller=Get.pub(Controller()); 获取实例
 - Get.lazyPut<ApiMock>(() => ApiMock()); 懒加载 ，只有使用的时候被实例化
