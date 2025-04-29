@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sample/common/app_languages.dart';
 import 'package:flutter_sample/l10n/app_localizations.dart';
 import 'package:flutter_sample/page/home/home_binding.dart';
-import 'package:flutter_sample/page/home/home_controller.dart';
 import 'package:flutter_sample/page/home/home_widget.dart';
+import 'package:flutter_sample/page/theme/theme_logic.dart';
+import 'package:flutter_sample/page/theme/theme_view.dart';
 import 'package:flutter_sample/routes/app_routes.dart';
 import 'package:get/get.dart';
 
@@ -11,14 +12,13 @@ void main() async {
   runApp(
     GetMaterialApp(
       initialBinding: HomeBinding(),
-      // initialRoute: AppRoutes.home,
       getPages: AppRoutes.pages.toList(),
-      // translations: Messages(),
-      // locale: Locale('zh', 'CN'),
-      // fallbackLocale: Locale('en', 'US'),
-      // getPages: [
-      //   GetPage(name: '/', page: () => Home())
-      // ],
+      translations: AppLanguages(),
+      locale: Locale('zh', 'CN'),
+      fallbackLocale: Locale('en', 'US'),
+      theme: ThemeData.light().copyWith(primaryColor: Colors.white),
+      darkTheme: ThemeData.dark().copyWith(primaryColor: Colors.black),
+      themeMode: ThemeMode.system,
       home: Home(),
     ),
   );
@@ -27,23 +27,31 @@ void main() async {
 class Home extends StatelessWidget {
   const Home({super.key});
 
-  // void getData() async {
-  //   HomeProvider provider = HomeProvider();
-  //   var page = 0;
-  //   provider.getArticleList(page);
-  // }
-
   @override
   Widget build(BuildContext context) {
     ///使用get.put实例化你的类
-    // Controller controller = Get.put(Controller());
-
     return Scaffold(
       ///Text套上Obx(()=>Text("${controller.count}"))表示当controller.count的值变化时会更新页面
       appBar: AppBar(
         title: Text("Flutter Demo"),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Get.defaultDialog(
+                cancelTextColor: Theme.of(context).primaryColor,
+                confirmTextColor: Theme.of(context).primaryColor,
+                title: '选择主题',
+                content: Container(
+                  color: Theme.of(context).primaryColor,
+                  child: ThemePage(),
+                ),
+              );
+            },
+            child: Text('theme'.tr),
+          ),
+        ],
         leading: TextButton(
-          child: Text("登录"),
+          child: Text("login".tr),
           onPressed: () {
             Get.toNamed(AppRoutes.login);
           },
@@ -120,6 +128,58 @@ class Home extends StatelessWidget {
     );
   }
 }
+//
+// class ThemeState extends StatefulWidget {
+//   ThemeState({super.key});
+//
+//   @override
+//   _ThemeState createState() => _ThemeState();
+// }
+//
+// class _ThemeState extends State<ThemeState> {
+//   ThemeMode _themeMode = ThemeLogic.to.themeMode;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: [
+//         RadioListTile(
+//           title: Text("System"),
+//           value: ThemeMode.system,
+//           groupValue: _themeMode,
+//           onChanged: (value) {
+//             setState(() {
+//               _themeMode = value!;
+//               ThemeLogic.to.setThemeMode(_themeMode);
+//             });
+//           },
+//         ),
+//         RadioListTile(
+//           title: Text("Light"),
+//           value: ThemeMode.light,
+//           groupValue: _themeMode,
+//           onChanged: (value) {
+//             setState(() {
+//               _themeMode = value!;
+//               ThemeLogic.to.setThemeMode(_themeMode);
+//             });
+//           },
+//         ),
+//         RadioListTile(
+//           title: Text("Dart"),
+//           value: ThemeMode.dark,
+//           groupValue: _themeMode,
+//           onChanged: (value) {
+//             setState(() {
+//               _themeMode = value!;
+//               ThemeLogic.to.setThemeMode(_themeMode);
+//             });
+//           },
+//         ),
+//       ],
+//     );
+//   }
+// }
 
 class Controller extends GetxController {
   ///0.obs表示count字段被观察

@@ -89,7 +89,7 @@ AppLocalizations.of(context)!.helloWorld
 # 添加 GetX
 
 - [https://pub.dev/packages/get](https://pub.dev/packages/get)
-- 路由管理：
+- 一、路由管理：
 - 导航到新页面 Get.to(NextScreen());
 - 用别名导航到新页面 Get.toNamed("/details"); 当需要传参数时使用arguments
   字段，在需要获取的页面中使用Get.arguments获取;如果是Map Get.arguments['htmlUrl'],不需要使用构造函数传值。
@@ -98,8 +98,83 @@ AppLocalizations.of(context)!.helloWorld
 - 进入下一个页面并取消之前的所有路由 Get.offAll(NextScreen());
 - 导航到下一条路由，并在返回后立即接收或更新数据 var data=await Get.to(Payment);
 - 在另一个页面上，发送前一个路由的数据 Get.back(result:'success');
-- 状态管理：
+- 二、状态管理：
+- 响应式变量声明
+- 1、使用Rx{xx} :
+  final name = RxString('');
+  final map=RxMap<String,String>({});final
+  list=RxList<String>([]);
+- 2、使用Rx,规定的泛型 Rx<Type>：
+  final name=Rx<String>(');
+  final list=Rx<List<String>>([]);
+  final map=Rx<Map<String,String>>({});
+- 3、只需添加.obs 作为value的属性；
+  final name='hello'.obs;
+  final list=<String>[].obs;
+  final map=<String,String>{}.obs;
+- 自定义：final user=User().obs;
+- 三、依赖管理
+- Controller controller=Get.pub(Controller()); 获取实例
+- Get.lazyPut<ApiMock>(() => ApiMock()); 懒加载 ，只有使用的时候被实例化
+- Get.putAsync<YourAsyncClass>( () async => await YourAsyncClass() ) ; 注册一个异步实例
+- 使用实例化方法/类：使用 Get.find();
+- final controller = Get.find<Controller>(); or Controller controller=Get.find();
+- Bindings 可以将路由、状态管理器和依赖管理器完全集成;
+- 创建class HomeBinding implements Bindings {}；IDE会自动要求重写 "dependencies"方法，然后插入要在该路由上使用的所有类
+  class HomeBinding implements Bindings {
+  @override
+  void dependencies() {
+  Get.lazyPut<HomeController>(() => HomeController());
+  Get.put<Service>(()=> Api());
+  }
+  }
+
+  class DetailsBinding implements Bindings {
+  @override
+  void dependencies() {
+  Get.lazyPut<DetailsController>(() => DetailsController());
+  }
+  }
+- 需要通知路由，将使用该Bindings来建立路由管理器、依赖关系和状态之间的连接;
+- 别名路由：
+  getPages: [
+  GetPage(
+  name: '/',
+  page: () => HomeView(),
+  binding: HomeBinding(),
+  ),
+  GetPage(
+  name: '/details',
+  page: () => DetailsView(),
+  binding: DetailsBinding(),
+  ),
+  ];
+- 使用正常路由
+  Get.to(Home(), binding: HomeBinding());
+  Get.to(DetailsView(), binding: DetailsBinding())
+    - BindingsBuilder使用：
+      getPages: [
+      GetPage(
+      name: '/',
+      page: () => HomeView(),
+      binding: BindingsBuilder(() {
+      Get.lazyPut<ControllerX>(() => ControllerX());
+      Get.put<Service>(()=> Api());
+      }),
+      ),
+      GetPage(
+      name: '/details',
+      page: () => DetailsView(),
+      binding: BindingsBuilder(() {
+      Get.lazyPut<DetailsController>(() => DetailsController());
+      }),
+      ),
+      ];
 
 # 添加webView
 
 - [https://pub.dev/packages/webview_flutter](https://pub.dev/packages/webview_flutter)
+
+# 添加SharedPreferences
+
+[https://pub.dev/packages/shared_preferences](https://pub.dev/packages/shared_preferences)

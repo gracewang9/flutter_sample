@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {
   static const String sName = "login";
@@ -22,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Scaffold(
-        appBar: AppBar(title: Text("login")),
+        appBar: AppBar(title: Text("login".tr)),
         body: Container(color: Theme.of(context).primaryColor,child: Stack(children: [
           // Image.asset(),
 

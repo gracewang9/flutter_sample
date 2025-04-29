@@ -2,27 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'details_logic.dart';
-import 'details_state.dart';
-
-// class DetailsPage extends GetView<DetailsLogic> {
-//   DetailsPage({super.key});
-//
-//   final DetailsState state = Get.find<DetailsLogic>().state;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     // var html=controller
-//     return Container(child: Text('${controller.count}'));
-//   }
-// }
-
 @immutable
 class DetailsPage extends StatefulWidget {
   DetailsPage({super.key});
 
-  String htmlUrl = Get.arguments['htmlUrl'];
-  String title = Get.arguments['title'];
+  final htmlUrl = Get.arguments['htmlUrl'];
+  final title = Get.arguments['title'];
 
   @override
   State<StatefulWidget> createState() => _HtmlWidgetState();
