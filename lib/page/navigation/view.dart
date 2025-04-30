@@ -6,15 +6,17 @@ import 'package:get/get.dart';
 class NavigationPage extends StatelessWidget {
   NavigationPage({super.key});
 
+  final List tabs = ["新闻", "历史", "图片"];
+
   final NavigationLogic logic = Get.put(NavigationLogic());
   static const TextStyle _textStyle = TextStyle(
     fontSize: 30,
     fontWeight: FontWeight.bold,
   );
-  static const List<Widget> _widgetOptions = <Widget>[
-    HomeWidget(),
-    Text('Index 1: Business', style: _textStyle),
-    Text('Index 2: Me', style: _textStyle),
+  static final List<Widget> _widgetOptions = <Widget>[
+    HomeTabBarWidget(),
+  Center(child:  Text('Index 1: Business', style: _textStyle)),
+    Center(child: Text('Index 2: Me', style: _textStyle)),
   ];
 
   @override
@@ -22,6 +24,7 @@ class NavigationPage extends StatelessWidget {
     return GetBuilder<NavigationLogic>(
       builder:
           (logic) => Scaffold(
+            appBar: null,
             bottomNavigationBar: BottomNavigationBar(
               items: [
                 BottomNavigationBarItem(

@@ -7,13 +7,54 @@ import 'logic.dart';
 import 'state.dart';
 
 
+@immutable
+class HomeTabBarWidget extends StatelessWidget {
+  HomeTabBarWidget({super.key});
+
+  final HomeState state = HomeState();
+  final List<Widget> children = <Widget>[
+    HomeWidget(),
+    Container(
+      alignment: Alignment.center,
+      child: Text("历史", textScaler: TextScaler.linear(5)),
+    ),
+    Container(
+      alignment: Alignment.center,
+      child: Text("图片", textScaler: TextScaler.linear(5)),
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+
+    state.tabs.map((element){
+
+    });
+    return DefaultTabController(
+      length: state.tabs.length,
+      child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 0.0,
+          bottom: TabBar(
+            dividerHeight: 0.0,
+            tabs: state.tabs.map((value) => Tab(text: value,height: 20)).toList(),
+          ),
+        ),
+        body: TabBarView(children: children),
+      ),
+    );
+  }
+}
+
+
+@immutable
 class HomeWidget extends GetView<HomeLogic> {
   const HomeWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return controller.obx(
-          (data) => ListView.separated(
+      (data) => ListView.separated(
         itemBuilder: (context, index) {
           return _ListItemWidget(datas: data!.data!.datas![index]);
         },
@@ -81,33 +122,16 @@ class _ListItemWidget extends StatelessWidget {
                 ),
               ],
             ),
-            // Row(
-            //   children: [
-            //     SizedBox(
-            //       width: 10.0,
-            //       height: 10.0,
-            //       child: Icon(Icons.share, color: Colors.grey),
-            //     ),
-            //   ],
-            // ),
           ],
         ),
       ),
       onTap: () {
-        // Get.to(DetailsPage(htmlUrl: '${datas.link}',title: '${datas.title}',));
-        // Get.toNamed("${datas.link}");
         var map = <String, String>{
           'htmlUrl': '${datas.link}',
           'title': '${datas.title}',
         };
-
         Get.toNamed(AppRoutes.detail, arguments: map);
-        // Get.snackbar("title", "message");
-        // Get.defaultDialog(title: "Test",onConfirm: (){
-        //   Get.back();
-        // });
       }, // => ,
     );
   }
 }
-

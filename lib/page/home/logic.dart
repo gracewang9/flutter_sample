@@ -4,9 +4,11 @@ import 'package:get/get.dart';
 import 'package:flutter_sample/data/models/home_entity.dart';
 import 'package:flutter_sample/core/network/api_service.dart';
 
+import '../../data/repositories/home_repository.dart';
+
 class HomeLogic extends GetxController with StateMixin<HomeEntity> {
   ApiService provider = Get.find<ApiService>();
-
+   // HomeRepository _repo = Get.find();
 
   void getArticleList() async {
     ///显示加载中

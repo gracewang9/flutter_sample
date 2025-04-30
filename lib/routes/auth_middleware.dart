@@ -5,8 +5,9 @@ import 'package:get/get.dart';
 class AuthMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
-    return AuthService.isLoggedIn == true
-        ? RouteSettings(name: "/login")
-        : null;
+    // return AuthService.isLoggedIn == true
+    //     ? RouteSettings(name: "/login")
+    //     : null;
+    return null;
   }
 }

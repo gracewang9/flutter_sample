@@ -1,3 +1,4 @@
 class AuthService {
-  static bool isLoggedIn = false;
+   bool isLoggedIn = false;
+   String token="";
 }

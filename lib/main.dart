@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sample/common/app_languages.dart';
 import 'package:flutter_sample/page/home/binding.dart';
-import 'package:flutter_sample/page/home/view.dart';
 import 'package:flutter_sample/page/navigation/view.dart';
 import 'package:flutter_sample/page/theme/theme_view.dart';
 import 'package:flutter_sample/routes/app_routes.dart';
@@ -18,7 +17,7 @@ void main() async {
       fallbackLocale: Locale('en', 'US'),
       theme: ThemeData.light().copyWith(primaryColor: Colors.white),
       darkTheme: ThemeData.dark().copyWith(primaryColor: Colors.black),
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       home: Home(),
     ),
   );
@@ -30,7 +29,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ///使用get.put实例化你的类
-    return Scaffold(
+  return    Scaffold(
       ///Text套上Obx(()=>Text("${controller.count}"))表示当controller.count的值变化时会更新页面
       appBar: AppBar(
         title: Text("Flutter Demo"),
