@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sample/core/network/interceptors/auth_service.dart';
+import 'package:flutter_sample/routes/app_routes.dart';
 import 'package:get/get.dart';
 
 import 'logic.dart';
 import 'state.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
+  LoginPage({super.key});
 
   final LoginLogic logic = Get.put(LoginLogic());
   final LoginState state = Get.find<LoginLogic>().state;
+  final AuthService _auth = Get.find();
+
+  void _handleLogin() {
+    _auth.login();
+    final fromRoute = Get.parameters['from'] ?? AppRoutes.home;
+    Get.toNamed(fromRoute);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +38,7 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
-
-
+            ElevatedButton(onPressed: _handleLogin, child: Text('login'.tr)),
           ],
         ),
       ),

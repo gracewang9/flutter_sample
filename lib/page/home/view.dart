@@ -13,7 +13,7 @@ class HomeTabBarWidget extends StatelessWidget {
 
   final HomeState state = HomeState();
   final List<Widget> children = <Widget>[
-    HomeWidget(),
+    _HomeWidget(),
     Container(
       alignment: Alignment.center,
       child: Text("历史", textScaler: TextScaler.linear(5)),
@@ -26,10 +26,6 @@ class HomeTabBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    state.tabs.map((element){
-
-    });
     return DefaultTabController(
       length: state.tabs.length,
       child: Scaffold(
@@ -48,8 +44,8 @@ class HomeTabBarWidget extends StatelessWidget {
 
 
 @immutable
-class HomeWidget extends GetView<HomeLogic> {
-  const HomeWidget({super.key});
+class _HomeWidget extends GetView<HomeLogic> {
+  const _HomeWidget();
 
   @override
   Widget build(BuildContext context) {

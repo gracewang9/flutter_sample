@@ -1,14 +1,12 @@
 import 'package:get/get.dart';
-import 'package:flutter_sample/core/network/api_service.dart';
 
-import '../../data/repositories/home_repository.dart';
+import '../../core/network/interceptors/auth_service.dart';
 import 'logic.dart';
 
 class HomeBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put(ApiService());
-    // Get.put(HomeRepository());
+    Get.put(AuthService(), permanent: true); // 全局单例
     Get.lazyPut(() => HomeLogic());
   }
 }

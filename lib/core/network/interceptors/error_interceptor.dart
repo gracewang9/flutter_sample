@@ -1,7 +1,32 @@
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
+import 'package:flutter/foundation.dart';
+import 'package:get/get_core/src/get_main.dart' show Get;
+import 'package:get/get_navigation/get_navigation.dart';
 
-class ErrorInterceptor extends Interceptor {
+class CustomInterceptor extends Interceptor {
+  @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    if (kDebugMode) {
+      print(
+        'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}',
+      );
+    }
+    super.onResponse(response, handler);
+  }
+
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    // final authService = Get.find<AuthService>();
+    // if (authService.isLoggedIn) {
+    //   options.headers['Authorization'] = 'Bearer ${authService.token}';
+    // }
+    if (kDebugMode) {
+      print('REQUEST[${options.method}] => PATH: ${options.path}');
+    }
+
+    super.onRequest(options, handler);
+  }
+
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
     final exception = _ApiException.fromDioError(err);
@@ -10,16 +35,12 @@ class ErrorInterceptor extends Interceptor {
   }
 }
 
-//
-// // 自定义异常类 (core/utils/api_exception.dart)
 class _ApiException implements Exception {
   final String message;
   final int? statusCode;
 
-  //
   _ApiException({required this.message, this.statusCode});
 
-  //
   factory _ApiException.fromDioError(DioException error) {
     switch (error.type) {
       case DioExceptionType.connectionTimeout:

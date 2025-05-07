@@ -18,7 +18,7 @@ void main() async {
       theme: ThemeData.light().copyWith(primaryColor: Colors.white),
       darkTheme: ThemeData.dark().copyWith(primaryColor: Colors.black),
       themeMode: ThemeMode.light,
-      home: Home(),
+      // home: Home(),
     ),
   );
 }
@@ -29,7 +29,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ///使用get.put实例化你的类
-  return    Scaffold(
+     return    Scaffold(
       ///Text套上Obx(()=>Text("${controller.count}"))表示当controller.count的值变化时会更新页面
       appBar: AppBar(
         title: Text("Flutter Demo"),

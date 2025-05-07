@@ -15,7 +15,7 @@ class NavigationPage extends StatelessWidget {
   );
   static final List<Widget> _widgetOptions = <Widget>[
     HomeTabBarWidget(),
-  Center(child:  Text('Index 1: Business', style: _textStyle)),
+    Center(child: Text('Index 1: Business', style: _textStyle)),
     Center(child: Text('Index 2: Me', style: _textStyle)),
   ];
 
