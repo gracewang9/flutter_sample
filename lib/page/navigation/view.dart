@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sample/page/business/view.dart';
 import 'package:flutter_sample/page/home/view.dart';
 import 'package:flutter_sample/page/navigation/logic.dart';
 import 'package:get/get.dart';
@@ -15,7 +16,7 @@ class NavigationPage extends StatelessWidget {
   );
   static final List<Widget> _widgetOptions = <Widget>[
     HomeTabBarWidget(),
-    Center(child: Text('Index 1: Business', style: _textStyle)),
+    Center(child: BusinessPage()),
     Center(child: Text('Index 2: Me', style: _textStyle)),
   ];
 

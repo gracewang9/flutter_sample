@@ -38,11 +38,12 @@ dependencies:
   #  启动页
   flutter_native_splash: ^2.4.6
   get: ^4.7.2
-  webview_flutter: ^4.11.0
-  shared_preferences: ^2.5.3
   dio: ^5.8.0+1
   flutter_easyloading: ^3.0.5
   http: ^1.4.0
+  webview_flutter: ^4.11.0
+  shared_preferences: ^2.5.3
+#  msh_checkbox: ^2.0.1
 
 
 dev_dependencies:

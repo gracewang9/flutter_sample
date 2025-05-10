@@ -8,6 +8,7 @@ class AuthMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     final authService = Get.find<AuthService>();
+    authService.getIsLoggedIn();
     print("获取登录状态 ： ${authService.isLoggedIn}");
     if (!authService.isLoggedIn) {
       return RouteSettings(name: AppRoutes.login, arguments: {'from': route});
