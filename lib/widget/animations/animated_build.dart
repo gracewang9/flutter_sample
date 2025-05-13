@@ -15,7 +15,7 @@ class _RotationAnimatedState extends State<RotationAnimated>
   void initState() {
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 100),
+      duration: Duration(milliseconds: 1000),
     )..repeat();
     super.initState();
   }

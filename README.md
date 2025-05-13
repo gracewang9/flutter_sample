@@ -187,7 +187,19 @@ samples, guidance on mobile development, and a full API reference.
 
 - [shared_preferences](https://pub.dev/packages/shared_preferences)
 
-
 # 添加网络框架 Dio
 
 [dio](https://pub.dev/packages/dio)
+
+## 创建签名文件
+
+- [android打包] (https://docs.flutter.cn/deployment/android)
+- keytool -genkey -v -keystore $env:USERPROFILE\android-keystore.jks
+  ` -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 ` -alias upload
+- 打包apk包 命名：flutter build apk 或在运行 flutter build appbundle
+- flutter build apk --obfuscate --split-debug-info=/out/android
+  --extra-gen-snapshot-options=--save-obfuscation-map=/out/android/map.json
+
+## vision_gallery_saver 用于将图片和视频保存到 iOS 和 Android 平台上的图库中
+
+- [vision_gallery_saver](https://pub.dev/packages/vision_gallery_saver)
