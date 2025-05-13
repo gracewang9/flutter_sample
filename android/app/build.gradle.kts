@@ -38,8 +38,8 @@ android {
         versionName = flutter.versionName
 
         ndk {
-            // Filter for architectures supported by Flutter
-            abiFilters "armeabi-v7a", "arm64-v8a", "x86_64"
+            abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a", "x86_64"))
+//            abiFilters "armeabi-v7a", "arm64-v8a", "x86_64"
         }
     }
 
@@ -64,13 +64,8 @@ android {
             signingConfig = signingConfigs.getByName("release")
         }
 
-
-//        getByName("release") {
-//
-//        }
         getByName("debug") {
             isDebuggable = true
-
         }
     }
 }
