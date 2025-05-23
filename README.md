@@ -203,3 +203,18 @@ samples, guidance on mobile development, and a full API reference.
 ## vision_gallery_saver 用于将图片和视频保存到 iOS 和 Android 平台上的图库中
 
 - [vision_gallery_saver](https://pub.dev/packages/vision_gallery_saver)
+
+## 弹出Toast
+
+- [flutter_easyloading](https://pub.dev/packages/flutter_easyloading)
+
+
+## firebase_messaging
+
+- [firebase_messaging](https://pub.dev/packages/firebase_messaging)
+- go_router
+  provider https://github.com/rrousselGit/provider/blob/master/resources/translations/zh-CN/README.md
+  firebase_messaging  https://pub.dev/packages/firebase_messaging
+  flutter_hooks https://github.com/rrousselGit/flutter_hooks/blob/master/packages/flutter_hooks/resources/translations/zh_cn/README.md
+- photo_manager https://github.com/fluttercandies/flutter_photo_manager/blob/main/README-ZH.md
+

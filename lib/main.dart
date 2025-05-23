@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_sample/common/app_languages.dart';
 import 'package:flutter_sample/page/home/binding.dart';
 import 'package:flutter_sample/page/navigation/view.dart';
@@ -18,6 +19,7 @@ void main() async {
       theme: ThemeData.light().copyWith(primaryColor: Colors.white),
       darkTheme: ThemeData.dark().copyWith(primaryColor: Colors.black),
       themeMode: ThemeMode.light,
+      builder: EasyLoading.init(),
       // home: Home(),
     ),
   );
