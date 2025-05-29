@@ -20,7 +20,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String nWombats(num count) {
     final intl.NumberFormat countNumberFormat = intl.NumberFormat.compact(
       locale: localeName,
-      
     );
     final String countString = countNumberFormat.format(count);
 
@@ -36,14 +35,11 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String pronoun(String gender) {
-    String _temp0 = intl.Intl.selectLogic(
-      gender,
-      {
-        'male': 'he',
-        'female': 'she',
-        'other': 'they',
-      },
-    );
+    String _temp0 = intl.Intl.selectLogic(gender, {
+      'male': 'he',
+      'female': 'she',
+      'other': 'they',
+    });
     return '$_temp0';
   }
 }
