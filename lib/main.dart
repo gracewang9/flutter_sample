@@ -7,59 +7,31 @@ import 'package:flutter_sample/page/theme/theme_view.dart';
 import 'package:flutter_sample/routes/app_routes.dart';
 import 'package:get/get.dart';
 
+
 void main() async {
-  runApp(
-    GetMaterialApp(
-      initialRoute: '/',
-      initialBinding: HomeBinding(),
-      getPages: AppRoutes.pages.toList(),
-      translations: AppLanguages(),
-      locale: Locale('zh', 'CN'),
-      fallbackLocale: Locale('en', 'US'),
-      theme: ThemeData.light().copyWith(primaryColor: Colors.white),
-      darkTheme: ThemeData.dark().copyWith(primaryColor: Colors.black),
-      themeMode: ThemeMode.light,
-      builder: EasyLoading.init(),
-      // home: Home(),
-    ),
-  );
+  runApp(Home());
 }
 
 class Home extends StatelessWidget {
   const Home({super.key});
 
+  static const listWidget = ["Text Widget", "Image Widget"];
+
   @override
   Widget build(BuildContext context) {
-    ///使用get.put实例化你的类
-     return    Scaffold(
-      ///Text套上Obx(()=>Text("${controller.count}"))表示当controller.count的值变化时会更新页面
-      appBar: AppBar(
-        title: Text("Flutter Demo"),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Get.defaultDialog(
-                cancelTextColor: Theme.of(context).primaryColor,
-                confirmTextColor: Theme.of(context).primaryColor,
-                title: '选择主题',
-                content: Container(
-                  color: Theme.of(context).primaryColor,
-                  child: ThemePage(),
-                ),
-              );
-            },
-            child: Text('theme'.tr),
-          ),
-        ],
-        leading: TextButton(
-          child: Text("login".tr),
-          onPressed: () {
-            Get.toNamed(AppRoutes.login);
-          },
-        ),
-        flexibleSpace: IconButton(icon: Icon(Icons.add), onPressed: () {}),
+    return MaterialApp(
+      home: ListView.separated(
+        itemBuilder: (BuildContext context,index){
+          return Text(listWidget[index],style: TextStyle(fontSize: 16,color: Colors.black),);
+        },
+        separatorBuilder: (BuildContext context,index){
+          return Divider();
+        },
+        itemCount: listWidget.length,
       ),
-      body: NavigationPage(),
     );
   }
 }
+
+
+
