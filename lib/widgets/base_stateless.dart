@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-class BaseStateless extends StatelessWidget {
-  const BaseStateless({super.key, required this.title, required this.body});
+abstract class BaseStateless extends StatelessWidget {
+  const BaseStateless({super.key, required this.title});
 
   final String title;
-  final Widget body;
+
+  // final Widget body;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,10 @@ class BaseStateless extends StatelessWidget {
         title: Text(title),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: body,
+      body: body(context),
     );
   }
+
+  @protected
+  Widget body(BuildContext context);
 }
